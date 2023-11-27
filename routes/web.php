@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/hello/{name}', function () {
+    return "<h1>Hello World!</h1>";
+})->where('name', '[A-Za-z]+');
+
+Route::get('/hello/{id?}', function () {
+    return "<h1>Hello World!</h1>";
+})->where('id', '[0-9]+');
+
+Route::get('/hello/{string}/{id?}', function () {
+    return "<h1>Hello World!</h1>";
+})->where(['id' => '[0-9]+'], ['string' => '[A-Za-z]+']);
+
