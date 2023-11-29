@@ -18,9 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', App\Http\Controllers\AboutController::class);
+Route::get('/home', function () {
+    return view('index');
+})->name('home');
+
+Route::get('/about', App\Http\Controllers\AboutController::class)->name('about');
 
 Route::controller(PostController::class)->group(function () {
-    Route::get('/blog', 'index');
+    Route::get('/blog', 'index')->name('blog');
     Route::get('/blog/{id}', 'show');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
