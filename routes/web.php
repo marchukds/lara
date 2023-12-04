@@ -38,3 +38,16 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+use App\Http\Controllers\Admin\{
+    DashboardController,
+    BrandController
+};
+
+Route::prefix('admin')
+    ->group(function () {
+        Route::get('', DashboardController::class)->name('admin');
+        Route::resource('brands', BrandController::class);
+    });
+
+
