@@ -21,6 +21,7 @@
                 {{ $header }}
             @endif
             {{ $slot }}
+            <x-admin.alert/>
         </main>
     </div>
 </div>

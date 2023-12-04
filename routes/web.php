@@ -44,10 +44,15 @@ use App\Http\Controllers\Admin\{
     BrandController
 };
 
-Route::prefix('admin')
-    ->group(function () {
-        Route::get('', DashboardController::class)->name('admin');
-        Route::resource('brands', BrandController::class);
+Route::prefix('admin')->group(function () {
+    Route::get('', App\Http\Controllers\Admin\DashboardController::class)->name('admin');
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('brands/trashed', 'trashed')->name('brands.trashed');
+        Route::post('brands/restore/{id}', 'restore')->name('brands.restore');
+        Route::delete('brands/force/{id}', 'force')->name('brands.force');
     });
+    Route::resource('brands', BrandController::class);
+});
+
 
 

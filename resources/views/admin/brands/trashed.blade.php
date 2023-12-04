@@ -3,15 +3,10 @@
         <div class="flex justify-between">
             <h2 class="text-3xl text-black pb-6">Brands management</h2>
             <div class="flex">
-                <a href="{{ route('brands.create') }}">
+                <a href="{{ route('brands.index') }}">
                     <x-admin.primary-button>
-                        {{ __('Create New') }}
+                        {{ __('All brands') }}
                     </x-admin.primary-button>
-                </a>
-                <a href="{{ route('brands.trashed') }}" class="ml-2">
-                    <x-admin.warning-button>
-                        {{ __('Trashed Brands') }}
-                    </x-admin.warning-button>
                 </a>
             </div>
         </div>
@@ -22,7 +17,7 @@
                 <i class="fas fa-list mr-3">
 
                 </i>
-                All Brands
+                Trashed Brands
             </p>
             <div class="bg-white overflow-auto">
                 @if(count($brands) > 0)
@@ -51,21 +46,21 @@
                                 </td>
                                 <td class="w-1/3 text-left py-3 px-4 ">
                                     <div class="inline-flex">
-                                        <a href="{{ route('brands.edit', $brand->id) }}">
-                                            <x-admin.success-button>
-                                                {{ __('Edit') }}
-                                            </x-admin.success-button>
-                                        </a>
-
+                                        <form method="POST" class="inline-form"
+                                              action="{{ route('brands.restore', $brand->id) }} ">
+                                            @csrf
+                                            <x-button>
+                                                {{ __('Restore') }}
+                                            </x-button>
+                                        </form>
                                         <form method="POST" class="inline-form ml-2"
-                                              action="{{ route('brands.destroy', $brand->id) }} ">
+                                              action="{{ route('brands.force', $brand->id) }} ">
                                             @csrf
                                             @method('DELETE')
                                             <x-admin.danger-button>
-                                                {{ __('Delete') }}
+                                                {{ __('Force Delete') }}
                                             </x-admin.danger-button>
                                         </form>
-
                                     </div>
                                 </td>
                             </tr>
