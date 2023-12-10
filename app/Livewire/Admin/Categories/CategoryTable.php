@@ -24,4 +24,11 @@ class CategoryTable extends Table
             Column::make('created_at', 'Created At')->component('columns.human-diff')
         ];
     }
+
+    public function deleteCategory($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
+        return $this->redirect('/admin/categories');
+    }
 }

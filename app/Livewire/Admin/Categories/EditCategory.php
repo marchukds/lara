@@ -2,20 +2,22 @@
 
 namespace App\Livewire\Admin\Categories;
 
-use App\Livewire\Forms\Admin\CategoryForm;
-use App\Models\Category;
 use Livewire\Component;
-use Livewire\Attributes\{Title, Layout};
+use Livewire\Attributes\{Layout, Title};
+
+use App\Livewire\Forms\Admin\CategoryForm;
 use Livewire\WithFileUploads;
+use App\Models\Category;
 
 #[Title('Edit Category')]
-class EditCategory extends Component {
-
+class EditCategory extends Component
+{
     use WithFileUploads;
 
     public CategoryForm $form;
 
-    public function mount(Category $category) {
+    public function mount(Category $category)
+    {
         $this->form->setCategory($category);
     }
 
@@ -25,8 +27,9 @@ class EditCategory extends Component {
         return $this->redirect('/admin/categories');
     }
 
-//    #[Layout('layouts.admin')]
-//    public function render()   {
-//        return view('livewire.admin.categories.edit-category');
-//    }
+    #[Layout('layouts.admin')]
+    public function render()
+    {
+        return view('livewire.admin.categories.edit-category');
+    }
 }
