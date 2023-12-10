@@ -10,6 +10,7 @@
                         </div>
                     </th>
                 @endforeach
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -22,6 +23,12 @@
                             </div>
                         </td>
                     @endforeach
+                    <td>
+                        <div class="flex">
+                            <x-button href="{{ route('categories.edit', $row->id) }}" color="green">Edit</x-button>
+                            <x-button wire:click="deleteCategory({{ $row->id }})" color="red" @class('ml-3')>Delete</x-button>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
