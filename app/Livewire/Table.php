@@ -16,8 +16,8 @@ abstract class Table extends Component
     public int $page = 1;
 
     public abstract function query(): Builder;
-
     public abstract function columns(): array;
+    public abstract function deleteItem(int $id): array;
 
     public function data(): LengthAwarePaginator
     {

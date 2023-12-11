@@ -1,34 +1,35 @@
 <?php
 
-namespace App\Livewire\Admin\Categories;
+namespace App\Livewire\Admin\Products;
 
 use App\Livewire\Column;
-use App\Livewire\Table;
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Component;
+use App\Livewire\Table;
 
-class CategoryTable extends Table
+class ProductTable extends Table
 {
-    public $routeEdit = 'categories.edit';
+    public $routeEdit = 'products.edit';
 
     public function query(): Builder
     {
-        return Category::query();
+        return Product::query();
     }
 
     public function columns(): array
     {
         return [
             Column::make('name', 'Name'),
-            Column::make('status', 'Status')->component('columns.status'),
+//            Column::make('status', 'Status')->component('columns.status'),
             Column::make('created_at', 'Created At')->component('columns.human-diff')
         ];
     }
 
     public function deleteItem(int $id): array
     {
-        $category = Category::find($id);
+        $category = Product::find($id);
         $category->delete();
-        return $this->redirect('/admin/categories');
+        return $this->redirect('/admin/products');
     }
 }

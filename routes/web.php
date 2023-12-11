@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\{DashboardController, BrandController};
+use App\Livewire\Admin\Categories\{CategoryList, CreateCategory, EditCategory};
+use App\Livewire\Admin\Products\{CreateProduct, ProductList, UpdateProduct};
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +42,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-use App\Http\Controllers\Admin\{DashboardController, BrandController};
-use App\Livewire\Admin\Categories\{CategoryList, CreateCategory, EditCategory};
+
 Route::prefix('admin')->group(function () {
     Route::get('', DashboardController::class)->name('admin');
     Route::controller(BrandController::class)->group(function () {
@@ -51,6 +53,10 @@ Route::prefix('admin')->group(function () {
     Route::get('categories', CategoryList::class)->name('categories.index');
     Route::get('categories/create', CreateCategory::class)->name('categories.create');
     Route::get('categories/{category}/edit', EditCategory::class)->name('categories.edit');
+    Route::get('products', ProductList::class)->name('products.index');
+    Route::get('products/create', CreateProduct::class)->name('products.create');
+    Route::get('products/{product}/edit', UpdateProduct::class)->name('products.edit');
+
     Route::resource('brands', BrandController::class);
 });
 

@@ -25,8 +25,8 @@
                     @endforeach
                     <td>
                         <div class="flex">
-                            <x-button href="{{ route($routeEdit, $row->id) }}" color="green">Edit</x-button>
-                            <x-button wire:click="deleteItem({{ $row->id }})" color="red" @class('ml-3')>Delete</x-button>
+                            <x-button href="{{ route('products.edit', $row->id) }}" color="green">Edit</x-button>
+                            <x-button wire:click="deleteProduct({{ $row->id }})" color="red" @class('ml-3')>Delete</x-button>
                         </div>
                     </td>
                 </tr>
