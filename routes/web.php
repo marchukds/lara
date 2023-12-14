@@ -50,6 +50,9 @@ Route::prefix('admin')->group(function () {
         Route::post('brands/restore/{id}', 'restore')->name('brands.restore');
         Route::delete('brands/force/{id}', 'force')->name('brands.force');
     });
+
+    Route::resource('brands', BrandController::class);
+
     Route::get('categories', CategoryList::class)->name('categories.index');
     Route::get('categories/create', CreateCategory::class)->name('categories.create');
     Route::get('categories/{category}/edit', EditCategory::class)->name('categories.edit');
@@ -57,7 +60,8 @@ Route::prefix('admin')->group(function () {
     Route::get('products/create', CreateProduct::class)->name('products.create');
     Route::get('products/{product}/edit', UpdateProduct::class)->name('products.edit');
 
-    Route::resource('brands', BrandController::class);
+//    Route::get('posts', PostList::class);
+
 });
 
 
