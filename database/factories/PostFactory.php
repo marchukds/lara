@@ -2,10 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Enums\PostStatus;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends Factory<Post>
  */
 class PostFactory extends Factory
 {
@@ -16,9 +19,14 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $users = DB::table('users')->pluck('id');
         return [
             'title' => $this->faker->sentence(),
-            'content' => $this->faker->paragraph()
+            'content' => $this->faker->paragraph(),
+            'status' => PostStatus::getRandomValue(),
+            'user_id' => $this->faker->randomElement($users),
+            'cover' => $this->faker->imageUrl(400, 300, 'animals', true),
         ];
+
     }
 }

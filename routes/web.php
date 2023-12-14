@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Livewire\Admin\Posts\PostList;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardController, BrandController};
 use App\Livewire\Admin\Categories\{CategoryList, CreateCategory, EditCategory};
@@ -60,8 +61,7 @@ Route::prefix('admin')->group(function () {
     Route::get('products/create', CreateProduct::class)->name('products.create');
     Route::get('products/{product}/edit', UpdateProduct::class)->name('products.edit');
 
-//    Route::get('posts', PostList::class);
-
+    Route::get('posts', PostList::class)->name('posts.index');
 });
 
 
