@@ -76,7 +76,7 @@
         </div>
 
         <div class="mt-4">
-            <x-button text="Create Category" type="submit" color="blue"/>
+            <x-button text="Create Post" type="submit" color="blue"/>
         </div>
     </form>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Posts;
 
 use App\Models\Post;
+use App\Models\Product;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\{ButtonGroupColumn, LinkColumn};
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -53,4 +54,12 @@ class PostTable extends DataTableComponent
                 ]),
         ];
     }
+
+    public function deleteItem(int $id)
+    {
+        $product = Post::find($id);
+        $product->delete();
+        return $this->redirect('/admin/posts');
+    }
+
 }
