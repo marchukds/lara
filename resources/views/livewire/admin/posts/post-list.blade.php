@@ -3,7 +3,7 @@
         <div class="flex justify-between">
             <h1 class="text-3xl text-black pb-6">Posts management</h1>
             <div class="flex">
-                <x-button href="{{ route('brands.create') }}">Create New</x-button>
+                <x-button href="{{ route('posts.create') }}">Create New</x-button>
                 <x-button href="#" color="orange">Trashed posts</x-button>
             </div>
         </div>

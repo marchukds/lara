@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->string('cover')->nullable();
-            $table->softDeletes();
             $table->string('slug');
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('status')->default(0);
+            $table->softDeletes();
         });
     }
 
