@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Livewire\Admin\Posts\CreatePost;
-use App\Livewire\Admin\Posts\PostList;
-use App\Livewire\Admin\Posts\UpdatePost;
+use App\Livewire\Admin\Posts\{CreatePost, PostList, UpdatePost};
+use App\Livewire\Main\{BlogShow, HomePage, BlogPage};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{DashboardController, BrandController};
 use App\Livewire\Admin\Categories\{CategoryList, CreateCategory, EditCategory};
@@ -20,20 +19,20 @@ use App\Livewire\Admin\Products\{CreateProduct, ProductList, UpdateProduct};
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('index');
-})->name('home');
+Route::get('/', HomePage::class)->name('home');
+Route::get('/blog', BlogPage::class)->name('blog');
+Route::get('/blog/show/{slug}', BlogShow::class)->name('blog.detail');
 
 Route::get('/about', App\Http\Controllers\AboutController::class)->name('about');
 
-Route::controller(PostController::class)->group(function () {
-    Route::get('/blog', 'index')->name('blog');
-    Route::get('/blog/{id}', 'show');
-});
+//Route::controller(PostController::class)->group(function () {
+//    Route::get('/blog', 'index')->name('blog');
+//    Route::get('/blog/{id}', 'show');
+//});
 
 Route::middleware([
     'auth:sanctum',

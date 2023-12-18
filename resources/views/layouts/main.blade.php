@@ -37,10 +37,8 @@
         {{ $slot }}
     </main>
 
-    @if(isset($footer))
-        <footer>
-            {{ $footer }}
-        </footer>
+    @if (isset($footer))
+        {{ $footer }}
     @endif
 </div>
 
