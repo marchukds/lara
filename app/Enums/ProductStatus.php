@@ -6,14 +6,14 @@ use BenSampo\Enum\Enum;
 
 /**
  * @method static static Pending()
- * @method static static Fresh()
+ * @method static static Active()
  * @method static static Sale()
  * @method static static Sold()
  */
 final class ProductStatus extends Enum
 {
     const Pending = 0;
-    const Fresh = 1;
+    const Active = 1;
     const Sale = 2;
     const Sold = 3;
 }

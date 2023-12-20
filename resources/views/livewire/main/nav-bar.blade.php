@@ -16,6 +16,10 @@
                         {{ __('Home') }}
                     </x-nav-link>
 
+                    <x-nav-link href="{{ route('shop') }}" :active="request()->routeIs('shop')">
+                        {{ __('Catalog') }}
+                    </x-nav-link>
+
                     <x-nav-link href="{{ route('blog') }}" :active="request()->routeIs('blog')">
                         {{ __('Blog') }}
                     </x-nav-link>
@@ -46,6 +50,9 @@
                                 </x-nav-link>
                             @endif
                         @endauth
+                            <x-nav-link href="{{ route('shopping.cart') }}" wire:navigate :active="request()->routeIs('shopping.cart')">
+                                @livewire('main.cart-counter')
+                            </x-nav-link>
                     </div>
                 @endif
                 <!-- Settings Dropdown -->
