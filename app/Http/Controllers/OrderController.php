@@ -25,9 +25,11 @@ class OrderController extends Controller
     public function placeOrder(Request $request)
     {
         $order = $this->orderRepository->storeOrderDetails($request->all());
-        dd($order);
+//        dd($order);
         if ($order) {
-            $this->payPal->processPayment($order);
+            \Cart::clear();
+            return view('main.success', ['order' => $order]);
+//            $this->payPal->processPayment($order);
         }
         return redirect()->back()->with('message', 'Order not placed');
     }

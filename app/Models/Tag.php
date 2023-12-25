@@ -14,6 +14,8 @@ class Tag extends Model
     use Sluggable;
     use SoftDeletes;
 
+    protected $fillable = ['name', 'text_color', 'bg_color'];
+
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);

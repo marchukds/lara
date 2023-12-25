@@ -20,7 +20,7 @@
                         {{ __('Catalog') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('blog') }}" :active="request()->routeIs('blog')">
+                    <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('blog')">
                         {{ __('Blog') }}
                     </x-nav-link>
 

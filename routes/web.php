@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
+use App\Livewire\Admin\Tags\{EditTag, TagList};
 use App\Livewire\Admin\Posts\{CreatePost, PostList, UpdatePost};
 use App\Livewire\Main\{BlogShow, HomePage, BlogPage, Catalog, ShoppingCart};
 use Illuminate\Support\Facades\Route;
@@ -25,13 +26,16 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', HomePage::class)->name('home');
-Route::get('/blog', BlogPage::class)->name('blog');
-Route::get('/blog/show/{slug}', BlogShow::class)->name('blog.detail');
+//Route::get('/blog', BlogPage::class)->name('blog');
+//Route::get('/blog/show/{slug}', BlogShow::class)->name('blog.detail');
 
 Route::get('/about', App\Http\Controllers\AboutController::class)->name('about');
 
 Route::get('/shop', Catalog::class)->name('shop');
 Route::get('/shopping-cart', ShoppingCart::class)->name('shopping.cart');
+
+Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
+Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 //Route::get('/checkout', function () {
 //    return view('index');
@@ -77,6 +81,9 @@ Route::prefix('admin')->group(function () {
     Route::get('posts', PostList::class)->name('posts.index');
     Route::get('posts/create', CreatePost::class)->name('posts.create');
     Route::get('posts/{post}/edit', UpdatePost::class)->name('posts.edit');
+
+    Route::get('tags', TagList::class);
+    Route::get('tags/{tag}/edit', EditTag::class)->name('tags.edit');
 });
 
 
